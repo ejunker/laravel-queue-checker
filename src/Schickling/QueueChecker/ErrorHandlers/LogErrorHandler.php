@@ -1,4 +1,6 @@
-<?php namespace Schickling\QueueChecker\ErrorHandlers;
+<?php
+
+namespace Schickling\QueueChecker\ErrorHandlers;
 
 use Log;
 

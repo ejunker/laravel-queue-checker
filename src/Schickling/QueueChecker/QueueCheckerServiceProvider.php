@@ -1,9 +1,11 @@
-<?php namespace Schickling\QueueChecker;
+<?php
+
+namespace Schickling\QueueChecker;
 
 use Illuminate\Support\ServiceProvider;
 
-class QueueCheckerServiceProvider extends ServiceProvider {
-
+class QueueCheckerServiceProvider extends ServiceProvider
+{
     /**
      * Register the binding
      *
@@ -14,14 +16,11 @@ class QueueCheckerServiceProvider extends ServiceProvider {
 
         $this->app->bind('Schickling\QueueChecker\ErrorHandlers\ErrorHandlerInterface', 'Schickling\QueueChecker\ErrorHandlers\LogErrorHandler');
 
-
-        $this->app['queue.check'] = $this->app->share(function($app)
-        {
+        $this->app['queue.check'] = $this->app->share(function($app) {
             return new Commands\QueueCheckerCommand();
         });
 
-        $this->app['queue.reset-check'] = $this->app->share(function($app)
-        {
+        $this->app['queue.reset-check'] = $this->app->share(function($app) {
             return new Commands\QueueCheckerResetCommand();
         });
 
@@ -30,5 +29,4 @@ class QueueCheckerServiceProvider extends ServiceProvider {
             'queue.reset-check'
             );
     }
-
 }
