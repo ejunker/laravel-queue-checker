@@ -10,5 +10,4 @@ class LogErrorHandler implements ErrorHandlerInterface
     {
         Log::error('Error Code: ' . $errorCode . '. Message: ' . $message);
     }
-
 }
