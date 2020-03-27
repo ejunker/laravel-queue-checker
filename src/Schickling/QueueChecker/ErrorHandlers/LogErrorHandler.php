@@ -6,8 +6,8 @@ use Log;
 
 class LogErrorHandler implements ErrorHandlerInterface
 {
-    public function handle($errorCode, $message)
+    public function handle($queueName, $errorCode, $message)
     {
-        Log::error('Error Code: ' . $errorCode . '. Message: ' . $message);
+        Log::error('Queue: ' . $queueName . ' Error Code: ' . $errorCode . '. Message: ' . $message);
     }
 }

@@ -8,9 +8,17 @@ class QueueCheckerJob
 {
     const CACHE_TTL = 3600;
 
-    public function fire($task, $data)
+    protected $cacheKey;
+    protected $jobValue;
+
+    public function __construct($cacheKey, $jobValue)
     {
-        Cache::put('queue-checker-job-value', $data['jobValue'], self::CACHE_TTL);
-        $task->delete();
+        $this->cacheKey = $cacheKey;
+        $this->jobValue = $jobValue;
+    }
+
+    public function handle()
+    {
+        Cache::put($this->cacheKey, $this->jobValue, self::CACHE_TTL);
     }
 }

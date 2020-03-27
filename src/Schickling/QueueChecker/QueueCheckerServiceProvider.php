@@ -17,11 +17,13 @@ class QueueCheckerServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(ErrorHandlerInterface::class, LogErrorHandler::class);
+        if($this->app->runningInConsole()) {
+            $this->app->bind(ErrorHandlerInterface::class, LogErrorHandler::class);
 
-        $this->commands([
-            QueueCheckerCommand::class,
-            QueueCheckerResetCommand::class,
-        ]);
+            $this->commands([
+                QueueCheckerCommand::class,
+                QueueCheckerResetCommand::class,
+            ]);
+        }
     }
 }
