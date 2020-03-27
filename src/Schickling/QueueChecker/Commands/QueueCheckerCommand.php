@@ -16,7 +16,7 @@ class QueueCheckerCommand extends Command
 
     protected $description = 'Check queue is running';
 
-    public function fire()
+    public function handle()
     {
         // TODO remove quick fix
         Queue::connection();

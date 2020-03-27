@@ -11,7 +11,7 @@ class QueueCheckerResetCommand extends Command
 
     protected $description = 'Reset values for checking queue';
 
-    public function fire()
+    public function handle()
     {
         Cache::forget('queue-checker-job-value');
         Cache::forget('queue-checker-command-value');
