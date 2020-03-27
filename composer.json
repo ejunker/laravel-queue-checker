@@ -1,7 +1,7 @@
 {
     "name": "ejunker/queue-checker",
     "description": "Command to check the queue health status",
-    "licene": "MIT",
+    "license": "MIT",
     "authors": [
         {
             "name": "Johannes Schickling",

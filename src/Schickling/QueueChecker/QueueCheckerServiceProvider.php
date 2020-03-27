@@ -3,6 +3,8 @@
 namespace Schickling\QueueChecker;
 
 use Illuminate\Support\ServiceProvider;
+use Schickling\QueueChecker\Commands\QueueCheckerCommand;
+use Schickling\QueueChecker\Commands\QueueCheckerResetCommand;
 use Schickling\QueueChecker\ErrorHandlers\ErrorHandlerInterface;
 use Schickling\QueueChecker\ErrorHandlers\LogErrorHandler;
 
@@ -17,17 +19,9 @@ class QueueCheckerServiceProvider extends ServiceProvider
     {
         $this->app->bind(ErrorHandlerInterface::class, LogErrorHandler::class);
 
-        $this->app['queue.check'] = $this->app->share(function($app) {
-            return new Commands\QueueCheckerCommand();
-        });
-
-        $this->app['queue.reset-check'] = $this->app->share(function($app) {
-            return new Commands\QueueCheckerResetCommand();
-        });
-
-        $this->commands(
-            'queue.check',
-            'queue.reset-check'
-            );
+        $this->commands([
+            QueueCheckerCommand::class,
+            QueueCheckerResetCommand::class,
+        ]);
     }
 }
